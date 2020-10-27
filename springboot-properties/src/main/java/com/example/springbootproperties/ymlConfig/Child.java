@@ -8,5 +8,6 @@ import java.util.List;
 public class Child {
     private String name;
     private Integer age;
-    private List<Friends> friends;
+//    private List<Friends> friends;
+    private Friends[] friends;
 }
