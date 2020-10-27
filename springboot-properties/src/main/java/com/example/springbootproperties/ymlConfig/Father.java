@@ -2,6 +2,7 @@ package com.example.springbootproperties.ymlConfig;
 
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Data
