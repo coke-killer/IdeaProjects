@@ -3,7 +3,7 @@ server:
 
 family:
   family-name: happy-fimaly
-  map: {k1: v1,k2: v2}
+#  map: {k1: v1,k2: v2}
   father:
     name: zimuge
     #占位符，随机数
@@ -16,7 +16,7 @@ family:
   child:
     #占位符，判断是否存在，不存在则为小王
     name: ${family.family-name:xiaowang}
-    age: 5
+    age: 4
     friends:
       - hobby: football
         sex: male
