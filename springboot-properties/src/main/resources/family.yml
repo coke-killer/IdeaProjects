@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+family:
+  family-name: happy-fimaly
+  map: {k1: v1,k2: v2}
+  father:
+    name: zimuge
+    #占位符，随机数
+    age: ${random.int}
+    alias: [111,222]
+  mother:
+    alias:
+      - lovely
+      - ailice
+  child:
+    #占位符，判断是否存在，不存在则为小王
+    name: ${family.family-name:xiaowang}
+    age: 5
+    friends:
+      - hobby: football
+        sex: male
+      - hobby: basketball
+        sex: female
+      - {hobby: sing,sex: female}
+#支持转义字符
+#"zhangsan \n lisi"-> zhangsan 换行 lisi
+#‘zhangsan \n lisi’-> zhangsan \n lisi
+#支持松散绑定:下列表示为一种写法
+#family-name=familyName=family_name
