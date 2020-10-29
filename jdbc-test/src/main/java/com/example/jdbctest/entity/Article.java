@@ -15,7 +15,7 @@ public class Article {
     private String author;
     private String title;
     private String content;
-    //转化后台传过来的字符串时间格式为Date对象
+    //转化后台body传过来的字符串时间格式为Date对象，传入传出格式化
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
 

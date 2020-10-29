@@ -1,5 +1,6 @@
 package com.example.jdbctest.controller;
 
+import com.example.jdbctest.AjaxResponse;
 import com.example.jdbctest.entity.Article;
 import com.example.jdbctest.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,24 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{id}")
-    public Article selectArticle(@PathVariable long id) {
-        return articleService.selectArticleById(id);
+    public AjaxResponse selectArticle(@PathVariable long id) {
+        Article article = articleService.selectArticleById(id);
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        ajaxResponse.setIsok(true);
+        ajaxResponse.setCode(200);
+        ajaxResponse.setMessage("查询成功");
+        ajaxResponse.setData(article);
+        return ajaxResponse;
     }
 
     @GetMapping("/articles")
-    public List<Article> selectArticles() {
-        return articleService.selectArticles();
+    public AjaxResponse selectArticles() {
+        List<Article> articles = articleService.selectArticles();
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        ajaxResponse.setIsok(true);
+        ajaxResponse.setMessage("查询成功");
+        ajaxResponse.setCode(200);
+        ajaxResponse.setData(articles);
+        return ajaxResponse;
     }
 }
