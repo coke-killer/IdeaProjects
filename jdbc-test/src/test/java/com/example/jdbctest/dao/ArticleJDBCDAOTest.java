@@ -18,30 +18,30 @@ class ArticleJDBCDAOTest {
     @Test
     void save() {
         Article article = new Article("小王", "10月29心情日记", "xxxxxxxxx", new Date());
-        articleJDBCDAO.save(article);
+        articleJDBCDAO.save(article, null);
     }
 
     @Test
     void deleteArticleById() {
-        articleJDBCDAO.deleteArticleById(1l);
+        articleJDBCDAO.deleteArticleById(1l, null);
     }
 
     @Test
     void updateById() {
         Article article = new Article(2l, "小鱼", "10月29心情日记", "xxxxxxxxx", new Date());
-        articleJDBCDAO.updateById(article);
+        articleJDBCDAO.updateById(article, null);
 
     }
 
     @Test
     void findArticleById() {
-        Article articleById = articleJDBCDAO.findArticleById(2l);
+        Article articleById = articleJDBCDAO.findArticleById(2l, null);
         System.out.println(articleById);
     }
 
     @Test
     void findArticle() {
-        List<Article> article = articleJDBCDAO.findArticle();
+        List<Article> article = articleJDBCDAO.findArticle(null);
         System.out.println(article.toString());
     }
 }
