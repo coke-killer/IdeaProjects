@@ -14,7 +14,7 @@ public class ArticleJDBCDAO {
     private JdbcTemplate jdbcTemplate;
 
     public void save(Article article) {
-        jdbcTemplate.update("INSERT INTO article(author,title,content,create_time) value (?,?,?,?)", article.getAuthor(), article.getAuthor(), article.getContent(), article.getCreateTime());
+        jdbcTemplate.update("INSERT INTO article(author,title,content,create_time) value (?,?,?,?)", article.getAuthor(), article.getTitle(), article.getContent(), article.getCreateTime());
     }
 
     public void deleteArticleById(Long id) {
