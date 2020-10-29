@@ -1,5 +1,6 @@
 package com.example.jdbctest.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ public class Article {
     private String author;
     private String title;
     private String content;
+    //转化后台传过来的字符串时间格式为Date对象
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date createTime;
 
     public Article(String author, String title, String content, Date createTime) {
