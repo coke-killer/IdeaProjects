@@ -3,6 +3,7 @@ package com.example.exceldemo.tool;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.example.exceldemo.entity.Teacher;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
