@@ -19,7 +19,6 @@ public class MongoDBDaoImpl implements MongoDBDao {
     public void saveData(Device device, String collectionName) {
         mongoTemplate.insert(device, collectionName);
     }
-
     @Override
     public List<Device> selectDevices(String dataoffset, String category, String collectionName) {
         Query query = new Query(Criteria.where("dataoffset").is(dataoffset).and("category").is(category));
