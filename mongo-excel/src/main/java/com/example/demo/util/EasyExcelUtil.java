@@ -12,6 +12,7 @@ import com.alibaba.excel.metadata.Table;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.ExcelBuilderImpl;
 import org.apache.poi.ss.usermodel.*;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -23,6 +24,7 @@ import java.util.List;
  * @Date 2019/8/29 11:00
  * @Description TODO
  **/
+@Component
 public class EasyExcelUtil {
 
     public static String excelFilePath = "C:\\Users\\yudongyue\\Desktop\\Jay01-(jay01)-v5自定义导入数据.xls";
@@ -31,7 +33,6 @@ public class EasyExcelUtil {
         // 文件输出位置
         OutputStream out = new FileOutputStream(excelFile);
         ExcelWriter writer = EasyExcelFactory.getWriter(out);
-
         // 动态添加表头，适用一些表头动态变化的场景
         Sheet sheet1 = new Sheet(1, 0);
         sheet1.setSheetName("第一个sheet");
@@ -53,13 +54,11 @@ public class EasyExcelUtil {
         tableStyle.setTableContentFont(font);
         sheet2.setTableStyle(tableStyle);
 */
-
         // 创建一个表格，用于 Sheet 中使用
         Table table2 = new Table(2);
         // 无注解的模式，动态添加表头
         table2.setHead(createTestListStringHead());
         writer.write1(new ArrayList<>(), sheet2, table2);
-
         int x = 0;
         while (x < 10000) {
             System.out.println("x = " + x);
@@ -70,14 +69,11 @@ public class EasyExcelUtil {
             Table tableX2 = new Table(1);
             sheet2.setStartRow(x);
             writer.write1(createDynamicModelList(x), sheet2, tableX2);
-
             x = x + 100;
         }
-
         //获取workbook，隐藏第2页sheet
         Workbook workbook = getWorkbook(writer);
         workbook.setSheetHidden(1, false);
-
         // 将上下文中的最终 outputStream 写入到指定文件中
         writer.finish();
         // 关闭流
@@ -85,7 +81,7 @@ public class EasyExcelUtil {
     }
 
     // 无注解的模式，动态添加表头
-    private static List<List<String>> createTestListStringHead() {
+    public static List<List<String>> createTestListStringHead() {
         // 模型上没有注解，表头数据动态传入
         List<List<String>> head = new ArrayList<List<String>>();
         List<String> headCoulumn1 = new ArrayList<String>();
@@ -106,7 +102,6 @@ public class EasyExcelUtil {
         return head;
     }
 
-
     private static List<List<Object>> createDynamicModelList(int x) {
         List<List<Object>> rows = new ArrayList<>();
         for (int i = x; i < 100 + x; i++) {
@@ -118,7 +113,6 @@ public class EasyExcelUtil {
             row.add("微信公众号： demo");
             rows.add(row);
         }
-
         return rows;
     }
 
@@ -179,21 +173,17 @@ public class EasyExcelUtil {
                 System.out.println("cell : " + i);
             }
         });
-
-
         Table table1 = new Table(1);
         Table table2 = new Table(2);
         table1.setHead(createTestListStringHead());// 写数据
         table2.setHead(createTestListStringHead());
         writer.write1(createDynamicModelList(0), sheet1, table1);
         writer.write1(createDynamicModelList(0), sheet2, table2);
-
         // 将上下文中的最终 outputStream 写入到指定文件中
         writer.finish();
         // 关闭流
         out.close();
     }
-
 
     public static void main(String[] args) {
         try {
@@ -207,5 +197,4 @@ public class EasyExcelUtil {
             e.printStackTrace();
         }
     }
-
 }
