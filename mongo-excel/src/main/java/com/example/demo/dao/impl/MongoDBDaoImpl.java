@@ -22,7 +22,7 @@ public class MongoDBDaoImpl implements MongoDBDao {
 
     @Override
     public List<Device> selectDevices(String dataoffset, String category, String collectionName) {
-        Query query = new Query(Criteria.where("dataoffset").is(dataoffset).and("category").is(category));
+        Query query = new Query(Criteria.where("dataoffset").is(dataoffset).and("category").is(category)).limit(300);
         List<Device> devices = mongoTemplate.find(query, Device.class, collectionName);
         return devices;
     }
